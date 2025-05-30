@@ -20,6 +20,8 @@ const username = "あなたのユーザーID";
 const password = "あなたのパスワード";
 const location = "あなたの居住地";
 
+```
+
 __###3. Secrets（シークレット）の設定（推奨）__
 パスワードなどの情報を直接コードに書くのは安全ではありません。
 GitHubリポジトリの「Settings」>「Secrets and variables」>「Actions」から
