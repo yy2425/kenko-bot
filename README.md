@@ -1,12 +1,19 @@
 # kenko-bot
 
 このリポジトリは、GitHub Actionsを使って毎日自動で健康日誌に体温（36.2℃～36.6℃のランダム）・居住地を入力送信するBotです。
+
 PCを起動したりブラウザを開くことなく自動で提出をしてくれます。
+
 個人のGitHubアカウントのActions上で動かすことを想定しています。
+
 Puppeteerを使ってChrome上でJavaScriptを動かす`Script.js`とこのスクリプトを毎日自動で実行する`Auto_Health_Report.yml`という二つのコードで構成されています。
+
 （イメージ）
+
 Puppetrer：Chrome上で作動するロボット
+
 JavaScript：Puppeteerへの指示（どのページを開いてどこに何を入力するか）
+
 Git Hub Actions：一連の流れを自動で毎日行うための場所
 
 ---
