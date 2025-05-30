@@ -56,5 +56,7 @@ const puppeteer = require("puppeteer");
   await page.click("#sendButton");
   await new Promise(r => setTimeout(r, 5000));
 
+  console.log("✅ フォーム送信完了！");
+
   await browser.close();
 })();
