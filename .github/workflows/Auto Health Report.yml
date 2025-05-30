@@ -2,7 +2,7 @@ name: Auto Health Report
 
 #on:
   schedule:
-    - cron: '10 23 * * *'  # 任意の時間を入力（mm hhの順でUSTで）、入力後は3行目の"#"を削除
+    - cron: '30 23 * * *'  # 任意の時間を入力（mm hhの順でUSTで、入力例では0830JSTに実行される）、入力後は3行目の"#"を削除、00は不可
   workflow_dispatch:
 
 jobs:
