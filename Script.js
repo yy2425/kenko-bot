@@ -8,6 +8,7 @@ const puppeteer = require("puppeteer");
   });
 
   const page = await browser.newPage();
+  // 下の三行を自分で入力
   const username = "";
   const password = "";
   const location = "";
