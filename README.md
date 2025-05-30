@@ -35,7 +35,7 @@ const location = "居住地（宮崎市など）";
 ```
 
 ### 3. GitHub Actionsの設定を確認
-.github/workflows/Auto_Health_Report.yml に自動で入力送信する設定が入っています。
+'Auto_Health_Report.yml'に自動で入力送信する設定が入っています。
 これにより毎日決まった時間に`Script.js`が自動で実行されます。
 
 スケジュールは cron 形式で設定されているので、自分のお好みの時間に設定してください。
