@@ -8,9 +8,9 @@ const puppeteer = require("puppeteer");
   });
 
   const page = await browser.newPage();
-  const username = "69224";
-  const password = "69224HSrk";
-  const location = "宮崎市";
+  const username = "";
+  const password = "";
+  const location = "";
 
   const targetUrl = "https://kenko:kenko-cac@ems4.kouku-dai.ac.jp/~take/kenko/";
 
