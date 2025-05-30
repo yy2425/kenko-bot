@@ -10,7 +10,7 @@ Puppeteerを使ってChrome上でJavaScriptを動かす`Script.js`とこのス�
 
 （イメージ）
 
-Puppetrer：Chrome上で作動するロボット
+Puppeteer：Chrome上で作動するロボット
 
 JavaScript：Puppeteerへの指示（どのページを開いてどこに何を入力するか）
 
