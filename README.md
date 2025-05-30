@@ -35,11 +35,13 @@ LOCATION
 という名前でシークレットを登録し、Script.jsでこれらを参照するようにコードを書き換えることを推奨します。
 
 例：
-js
+```js
 
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
 const location = process.env.LOCATION;
+
+```
 
 ### 4. GitHub Actionsの設定を確認
 すでに .github/workflows/Auto_Health_Report.yml の設定が入っています。
