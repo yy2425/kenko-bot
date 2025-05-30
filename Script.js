@@ -56,9 +56,5 @@ const puppeteer = require("puppeteer");
   await page.click("#sendButton");
   await new Promise(r => setTimeout(r, 5000));
 
-  // Git Hub Actionsに以下の文字が表示されるはず
-  console.log("✅ フォーム送信完了！");
-  console.log(`📋 入力体温: ${intPart}.${decimalPart}℃`);
-  console.log(`🏠 入力居住地: 宮崎市`);
   await browser.close();
 })();
