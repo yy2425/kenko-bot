@@ -8,7 +8,7 @@ const puppeteer = require("puppeteer");
   });
 
   const page = await browser.newPage();
-  // 下の三行は自分で入力
+  #以下の三行は自分で入力
   const username = "";
   const password = "";
   const location = "";
@@ -29,10 +29,25 @@ const puppeteer = require("puppeteer");
   await inputButton.evaluate(el => el.scrollIntoView());
   await inputButton.click();
 
+  // 日付入力欄に今日の日付を入力（形式: yyyy-mm-dd）
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  const formattedDate = `${yyyy}-${mm}-${dd}`;
+
+  await page.evaluate((date) => {
+    const dateInput = document.querySelector('#nichiji');
+    if (dateInput) {
+      dateInput.value = date;
+      dateInput.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+  }, formattedDate);
+
   // ラジオボタンは click で選択
   await page.click('input[name="toi0"][value="1"]');
 
-  // 体温入力（inputイベント発火付き）
+  // 体温（inputイベント発火つき）
   const temp = (Math.floor(Math.random() * 5) + 2) / 10 + 36.0;
   const [intPart, decimalPart] = temp.toFixed(1).split(".");
   await page.evaluate((intPart, decimalPart) => {
@@ -45,7 +60,7 @@ const puppeteer = require("puppeteer");
     temp2.dispatchEvent(new Event("input", { bubbles: true }));
   }, intPart, decimalPart);
   
-  // 居住地入力（inputイベント発火付き）
+  // 居住地（inputイベント発火つき）
   await page.evaluate((location) => {
     const tf2 = document.querySelector("#tf2");
     tf2.value = location;
@@ -57,6 +72,7 @@ const puppeteer = require("puppeteer");
   await new Promise(r => setTimeout(r, 5000));
 
   console.log("✅ フォーム送信完了！");
-
+  console.log(`📋 入力体温: ${intPart}.${decimalPart}℃`);
+  console.log(`🏠 入力居住地: ${location}`);
   await browser.close();
 })();
