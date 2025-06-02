@@ -6,7 +6,7 @@
 
 Puppeteerを使ってChrome上でJavaScriptを動かす`Script.js`とこれを毎日自動で実行する`Auto_Health_Report.yml`という二つのコードで構成されています。
 
-処理の成功可否はメールで通知することができます（右上のプロフィール→Notifications→System→Actions）が、きちんと提出されてるかは判定できないので各自でモニターしてください。
+処理の成功可否はメールで通知することができます（右上のプロフィール→Notifications→System→Actions）が、きちんと提出されてるかは各自でモニターしてください。
 
 ### Slackに通知を送ることもできます。
 
