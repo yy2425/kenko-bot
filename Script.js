@@ -16,7 +16,7 @@ const { DateTime } = require("luxon");
 
   const targetUrl = "https://kenko:kenko-cac@ems4.kouku-dai.ac.jp/~take/kenko/";
 
-  // ページ遷移（タイムアウトを60秒に延長）
+  // ページ遷移
   await page.goto(targetUrl, { waitUntil: "networkidle2", timeout: 60000 });
 
   // ログインフォーム入力
