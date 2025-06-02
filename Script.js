@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const { DateTime } = require("luxon");
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -8,14 +9,14 @@ const puppeteer = require("puppeteer");
   });
 
   const page = await browser.newPage();
-  #以下の三行は自分で入力
-  const username = "";
-  const password = "";
-  const location = "";
+  // 以下の三行は自分で入力
+  const username = "ユーザーID（半角）";
+  const password = "パスワード（半角）";
+  const location = "居住地（全角可）";
 
   const targetUrl = "https://kenko:kenko-cac@ems4.kouku-dai.ac.jp/~take/kenko/";
 
-  // ページ遷移（タイムアウトを60秒）
+  // ページ遷移（タイムアウトを60秒に延長）
   await page.goto(targetUrl, { waitUntil: "networkidle2", timeout: 60000 });
 
   // ログインフォーム入力
@@ -29,13 +30,11 @@ const puppeteer = require("puppeteer");
   await inputButton.evaluate(el => el.scrollIntoView());
   await inputButton.click();
 
-  // 日付入力欄に今日の日付を入力（形式: yyyy-mm-dd）
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
-  const formattedDate = `${yyyy}-${mm}-${dd}`;
+  // JSTの日付を取得
+  const jstDate = DateTime.now().setZone("Asia/Tokyo");
+  const formattedDate = jstDate.toISODate();
 
+  // 日付入力欄に今日の日付を入力（形式: yyyy-mm-dd）
   await page.evaluate((date) => {
     const dateInput = document.querySelector('#nichiji');
     if (dateInput) {
@@ -47,7 +46,7 @@ const puppeteer = require("puppeteer");
   // ラジオボタンは click で選択
   await page.click('input[name="toi0"][value="1"]');
 
-  // 体温（inputイベント発火つき）
+  // 体温
   const temp = (Math.floor(Math.random() * 5) + 2) / 10 + 36.0;
   const [intPart, decimalPart] = temp.toFixed(1).split(".");
   await page.evaluate((intPart, decimalPart) => {
@@ -60,7 +59,7 @@ const puppeteer = require("puppeteer");
     temp2.dispatchEvent(new Event("input", { bubbles: true }));
   }, intPart, decimalPart);
   
-  // 居住地（inputイベント発火つき）
+  // 居住地
   await page.evaluate((location) => {
     const tf2 = document.querySelector("#tf2");
     tf2.value = location;
@@ -72,7 +71,9 @@ const puppeteer = require("puppeteer");
   await new Promise(r => setTimeout(r, 5000));
 
   console.log("✅ フォーム送信完了！");
+  console.log(`📅 入力日付: ${formattedDate}`);
   console.log(`📋 入力体温: ${intPart}.${decimalPart}℃`);
   console.log(`🏠 入力居住地: ${location}`);
+  
   await browser.close();
 })();
